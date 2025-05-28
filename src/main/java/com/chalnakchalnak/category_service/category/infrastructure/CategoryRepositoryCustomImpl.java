@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryRepository  categoryRepository;
     private final JPAQueryFactory queryFactory;
 
     @Transactional
