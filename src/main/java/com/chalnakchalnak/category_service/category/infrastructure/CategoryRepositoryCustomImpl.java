@@ -2,6 +2,8 @@ package com.chalnakchalnak.category_service.category.infrastructure;
 
 import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
 import com.chalnakchalnak.category_service.category.entity.QCategory;
+import com.chalnakchalnak.category_service.common.entity.BaseResponseStatus;
+import com.chalnakchalnak.category_service.common.exception.BaseException;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
 
+    private final CategoryRepository categoryRepository;
     private final JPAQueryFactory queryFactory;
 
     @Transactional
@@ -27,6 +30,9 @@ public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
         var update = queryFactory.update(c);
 
         if (dto.getName() != null && !dto.getName().isBlank()) {
+            if (categoryRepository.existsByName(dto.getName())) {
+                throw new BaseException(BaseResponseStatus.DUPLICATED_CATEGORY);
+            }
             update.set(c.name, dto.getName());
             hasUpdate = true;
         }
