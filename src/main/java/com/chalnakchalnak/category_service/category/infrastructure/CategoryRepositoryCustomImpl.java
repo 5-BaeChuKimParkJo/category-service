@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
 
-    private final CategoryRepository  categoryRepository;
+    private final CategoryRepository categoryRepository;
     private final JPAQueryFactory queryFactory;
 
     @Transactional
@@ -30,6 +30,7 @@ public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
         var update = queryFactory.update(c);
 
         if (dto.getName() != null && !dto.getName().isBlank()) {
+            // 이름 중복 검사
             if (categoryRepository.existsByName(dto.getName())) {
                 throw new BaseException(BaseResponseStatus.DUPLICATED_CATEGORY);
             }
