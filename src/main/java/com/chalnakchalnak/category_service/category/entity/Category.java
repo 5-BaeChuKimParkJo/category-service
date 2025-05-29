@@ -23,15 +23,11 @@ public class Category extends BaseEntity {
 
     private String imageUrl;
 
-    @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
-    private Boolean isUsed;
-
     @Builder
-    public Category(Long id, String name, String description, String imageUrl, Boolean isUsed) {
+    public Category(Long id, String name, String description, String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.isUsed = isUsed;
     }
 }

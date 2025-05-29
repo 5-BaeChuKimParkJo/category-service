@@ -12,14 +12,12 @@ public class CategoryVo {
     private String name;
     private String description;
     private String imageUrl;
-    private Boolean isUsed;
 
     @Builder
-    public CategoryVo(Long categoryId, String name, String description, String imageUrl, Boolean isUsed) {
+    public CategoryVo(Long categoryId, String name, String description, String imageUrl) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.isUsed = isUsed;
     }
 }

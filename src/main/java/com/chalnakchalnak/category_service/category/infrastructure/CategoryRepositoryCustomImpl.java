@@ -30,10 +30,6 @@ public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
         var update = queryFactory.update(c);
 
         if (dto.getName() != null && !dto.getName().isBlank()) {
-            // 이름 중복 검사
-            if (categoryRepository.existsByName(dto.getName())) {
-                throw new BaseException(BaseResponseStatus.DUPLICATED_CATEGORY);
-            }
             update.set(c.name, dto.getName());
             hasUpdate = true;
         }
@@ -44,9 +40,6 @@ public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
         if (dto.getImageUrl() != null && !dto.getImageUrl().isBlank()) {
             update.set(c.imageUrl, dto.getImageUrl());
             hasUpdate = true;
-        }
-        if (dto.getIsUsed() != null) {
-            update.set(c.isUsed, dto.getIsUsed());
         }
 
         if (!hasUpdate) {

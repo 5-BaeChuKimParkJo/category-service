@@ -16,15 +16,13 @@ public class CategoryRequestDto {
     private String name;
     private String description;
     private String imageUrl;
-    private Boolean isUsed;
 
     @Builder
-    public CategoryRequestDto(Long categoryId, String name, String description, String imageUrl, Boolean isUsed) {
+    public CategoryRequestDto(Long categoryId, String name, String description, String imageUrl) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.isUsed = isUsed;
     }
 
     public static CategoryRequestDto from(CategoryVo categoryVo) {
@@ -33,7 +31,6 @@ public class CategoryRequestDto {
                 .name(categoryVo.getName())
                 .description(categoryVo.getDescription())
                 .imageUrl(categoryVo.getImageUrl())
-                .isUsed(categoryVo.getIsUsed() == null ? true : categoryVo.getIsUsed())
                 .build();
     }
 
@@ -43,7 +40,6 @@ public class CategoryRequestDto {
                 .name(this.name)
                 .description(this.description)
                 .imageUrl(this.imageUrl)
-                .isUsed(this.isUsed)
                 .build();
     }
 }
