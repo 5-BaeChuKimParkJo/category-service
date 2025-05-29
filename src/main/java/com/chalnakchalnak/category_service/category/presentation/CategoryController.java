@@ -4,7 +4,6 @@ import com.chalnakchalnak.category_service.category.application.CategoryService;
 import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
 import com.chalnakchalnak.category_service.category.dto.out.CategoryResponseDto;
 import com.chalnakchalnak.category_service.category.vo.CategoryVo;
-import com.chalnakchalnak.category_service.common.entity.BaseResponseEntity;
 import com.chalnakchalnak.category_service.common.entity.BaseResponseStatus;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,38 +24,34 @@ public class CategoryController {
 
     @Operation(summary = "카테고리 전체 조회")
     @GetMapping("/list")
-    public BaseResponseEntity<List<CategoryVo>> getCategory() {
-        return new BaseResponseEntity<>(
-                categoryService.getCategoryList()
+    public List<CategoryVo>getCategory() {
+        return categoryService.getCategoryList()
                         .stream()
                         .map(CategoryResponseDto::toVo)
-                        .toList());
+                        .toList();
     }
 
     @Operation(summary = "카테고리 생성")
     @PostMapping
-    public BaseResponseEntity<Void> createCategory(@RequestBody CategoryVo categoryVo) {
+    public void createCategory(@RequestBody CategoryVo categoryVo) {
         categoryService.createCategory(CategoryRequestDto.from(categoryVo));
-        return new BaseResponseEntity<>();
     }
 
     @Operation(summary = "카테고리 수정")
     @PutMapping
-    public BaseResponseEntity<Void> updateCategory(@RequestBody CategoryVo categoryVo) {
+    public void updateCategory(@RequestBody CategoryVo categoryVo) {
         categoryService.updateCategory(CategoryRequestDto.from(categoryVo));
-        return new BaseResponseEntity<>();
     }
 
     @Operation(summary = "카테고리 삭제")
     @DeleteMapping("/{categoryId}")
-    public BaseResponseEntity<Void> deleteCategory(@PathVariable Long categoryId) {
+    public void deleteCategory(@PathVariable Long categoryId) {
         categoryService.deleteCategory(categoryId);
-        return new BaseResponseEntity<>();
     }
 
     @Operation(summary = "추천 카테고리 조회")
     @GetMapping("/recommend")
-    public BaseResponseEntity<List<CategoryVo>> getRecommendedCategory() {
+    public List<CategoryVo> getRecommendedCategory() {
         return null;
     }
 }
