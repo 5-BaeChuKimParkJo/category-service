@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 @OpenAPIDefinition(
     info = @io.swagger.v3.oas.annotations.info.Info(
-                    title = "Posting-common-Service API",
+                    title = "Category-Service API",
                     version = "v1",
                     description = "게시물 공통 서비스"
             ), security = {
