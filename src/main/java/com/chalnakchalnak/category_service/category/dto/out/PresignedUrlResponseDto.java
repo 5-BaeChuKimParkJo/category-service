@@ -1,0 +1,17 @@
+package com.chalnakchalnak.category_service.category.dto.out;
+
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+public class PresignedUrlResponseDto {
+
+    private String presignedUrl;
+    private String uploadFileUrl;
+
+    @Builder
+    public PresignedUrlResponseDto(String presignedUrl, String uploadFileUrl) {
+        this.presignedUrl = presignedUrl;
+        this.uploadFileUrl = uploadFileUrl;
+    }
+}
