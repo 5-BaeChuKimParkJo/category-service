@@ -31,7 +31,7 @@ public class PresignedUrlController {
                 .toVo();
     }
 
-    @Operation(summary = "이미지 url db저장")
+    @Operation(summary = "이미지 url DB저장")
     @PutMapping("/save-url")
     public void saveImageUrl(@Valid @RequestBody SaveImageUrlRequestVo saveImageUrlRequestVo) {
         presignedUrlService.saveImageUrl(SaveImageUrlRequestDto.from(saveImageUrlRequestVo));
