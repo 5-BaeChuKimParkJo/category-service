@@ -3,7 +3,11 @@ package com.chalnakchalnak.category_service.category.application;
 import com.chalnakchalnak.category_service.category.dto.in.PresignedUrlRequestDto;
 import com.chalnakchalnak.category_service.category.dto.in.SaveImageUrlRequestDto;
 import com.chalnakchalnak.category_service.category.dto.out.PresignedUrlResponseDto;
+import com.chalnakchalnak.category_service.category.entity.Category;
 import com.chalnakchalnak.category_service.category.infrastructure.CategoryRepository;
+import com.chalnakchalnak.category_service.common.entity.BaseResponseStatus;
+import com.chalnakchalnak.category_service.common.exception.BaseException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +17,8 @@ import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 import software.amazon.awssdk.services.s3.presigner.model.PresignedPutObjectRequest;
 import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignRequest;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 @Slf4j
@@ -45,13 +51,20 @@ public class PresignedUrlServiceImpl implements PresignedUrlService{
         PresignedPutObjectRequest presignedRequest = s3Presigner.presignPutObject(presignRequest);
 
         String presignedUrl = presignedRequest.url().toString();
-        String uploadFileUrl = "https://" + bucket + ".s3." + region + ".amazonaws.com/" + presignedUrlRequestDto.getFileName();
+        String uploadFileUrl = "https://" + bucket + ".s3." + region + ".amazonaws.com/"
+                + URLEncoder.encode(presignedUrlRequestDto.getFileName(), StandardCharsets.UTF_8);
 
-        return null;
+        return PresignedUrlResponseDto.builder()
+                .presignedUrl(presignedUrl)
+                .uploadFileUrl(uploadFileUrl)
+                .build();
     }
 
     @Override
+    @Transactional
     public void saveImageUrl(SaveImageUrlRequestDto saveImageUrlRequestDto) {
-
+        Category category = categoryRepository.findById(saveImageUrlRequestDto.getCategoryId())
+                .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_CATEGORY));
+        category.setImageUrl(saveImageUrlRequestDto.getUploadFileUrl());
     }
 }

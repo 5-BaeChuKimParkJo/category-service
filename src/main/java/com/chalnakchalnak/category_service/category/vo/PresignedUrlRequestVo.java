@@ -18,13 +18,9 @@ public class PresignedUrlRequestVo {
     )
     private String contentType;
 
-    @NotBlank(message = "카테고리 uuid은 필수입니다.")
-    private String categoryUuid;
-
     @Builder
-    public PresignedUrlRequestVo(String fileName, String contentType, String categoryUuid) {
+    public PresignedUrlRequestVo(String fileName, String contentType) {
         this.fileName = fileName;
         this.contentType = contentType;
-        this.categoryUuid = categoryUuid;
     }
 }
