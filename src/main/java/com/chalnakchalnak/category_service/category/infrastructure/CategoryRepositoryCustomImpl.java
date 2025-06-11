@@ -2,8 +2,6 @@ package com.chalnakchalnak.category_service.category.infrastructure;
 
 import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
 import com.chalnakchalnak.category_service.category.entity.QCategory;
-import com.chalnakchalnak.category_service.common.entity.BaseResponseStatus;
-import com.chalnakchalnak.category_service.common.exception.BaseException;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
