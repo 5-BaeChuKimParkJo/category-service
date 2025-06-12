@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CategoryService {
 
+    CategoryResponseDto getCategory(Long categoryId);
+
     List<CategoryResponseDto> getCategoryList();
 
     void createCategory(CategoryRequestDto categoryRequestDto);

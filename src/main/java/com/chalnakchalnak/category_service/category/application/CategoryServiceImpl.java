@@ -23,6 +23,12 @@ public class CategoryServiceImpl implements CategoryService{
     private final CategoryRepositoryCustom categoryRepositoryCustom;
 
     @Override
+    public CategoryResponseDto getCategory(Long categoryId) {
+        return CategoryResponseDto.from(categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_CATEGORY)));
+    }
+
+    @Override
     public List<CategoryResponseDto> getCategoryList() {
         return categoryRepository.findAll().stream().map(CategoryResponseDto::from).toList();
     }

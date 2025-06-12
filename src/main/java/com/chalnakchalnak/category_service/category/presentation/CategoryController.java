@@ -22,9 +22,15 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+    @Operation(summary = "카테고리 단일 조회")
+    @GetMapping("/{categoryId}")
+    public CategoryVo getCategory(@PathVariable Long categoryId) {
+        return categoryService.getCategory(categoryId).toVo();
+    }
+
     @Operation(summary = "카테고리 전체 조회")
     @GetMapping("/list")
-    public List<CategoryVo>getCategory() {
+    public List<CategoryVo> getCategoryList() {
         return categoryService.getCategoryList()
                         .stream()
                         .map(CategoryResponseDto::toVo)
