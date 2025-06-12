@@ -1,6 +1,6 @@
 package com.chalnakchalnak.category_service.category.dto.in;
 
-import com.chalnakchalnak.category_service.category.vo.SaveImageUrlRequestVo;
+import com.chalnakchalnak.category_service.category.vo.in.SaveImageUrlRequestVo;
 import lombok.Builder;
 import lombok.Getter;
 

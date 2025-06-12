@@ -1,12 +1,14 @@
 package com.chalnakchalnak.category_service.category.presentation;
 
 import com.chalnakchalnak.category_service.category.application.CategoryService;
+import com.chalnakchalnak.category_service.category.dto.in.CategoryIdListRequestDto;
 import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
 import com.chalnakchalnak.category_service.category.dto.out.CategoryResponseDto;
-import com.chalnakchalnak.category_service.category.vo.CategoryVo;
-import com.chalnakchalnak.category_service.common.entity.BaseResponseStatus;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryIdListRequestVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,15 @@ public class CategoryController {
     @GetMapping("/{categoryId}")
     public CategoryVo getCategory(@PathVariable Long categoryId) {
         return categoryService.getCategory(categoryId).toVo();
+    }
+
+    @Operation(summary = "카테고리 리스트 조회")
+    @PostMapping("/list")
+    public List<CategoryVo> getCategoryLIst(@RequestBody @Valid CategoryIdListRequestVo categoryIdListRequestVo) {
+        return categoryService.getCategoryList(CategoryIdListRequestDto.from(categoryIdListRequestVo))
+                .stream()
+                .map(categoryResponseDto -> categoryResponseDto.toVo())
+                .toList();
     }
 
     @Operation(summary = "카테고리 전체 조회")

@@ -1,7 +1,7 @@
 package com.chalnakchalnak.category_service.category.dto.in;
 
 import com.chalnakchalnak.category_service.category.entity.Category;
-import com.chalnakchalnak.category_service.category.vo.CategoryVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.chalnakchalnak.category_service.category.vo;
+package com.chalnakchalnak.category_service.category.vo.out;
 
 import lombok.Builder;
 import lombok.Getter;

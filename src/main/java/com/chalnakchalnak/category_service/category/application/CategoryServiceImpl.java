@@ -1,5 +1,6 @@
 package com.chalnakchalnak.category_service.category.application;
 
+import com.chalnakchalnak.category_service.category.dto.in.CategoryIdListRequestDto;
 import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
 import com.chalnakchalnak.category_service.category.entity.Category;
 import com.chalnakchalnak.category_service.category.infrastructure.CategoryRepositoryCustom;
@@ -26,6 +27,14 @@ public class CategoryServiceImpl implements CategoryService{
     public CategoryResponseDto getCategory(Long categoryId) {
         return CategoryResponseDto.from(categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_CATEGORY)));
+    }
+
+    @Override
+    public List<CategoryResponseDto> getCategoryList(CategoryIdListRequestDto categoryIdListRequestDto) {
+        return categoryIdListRequestDto.getCategoryIdList()
+                .stream().map(categoryId -> CategoryResponseDto.from(categoryRepository.findById(categoryId)
+                        .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_CATEGORY))))
+                .toList();
     }
 
     @Override

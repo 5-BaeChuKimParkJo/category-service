@@ -1,6 +1,6 @@
 package com.chalnakchalnak.category_service.category.dto.out;
 
-import com.chalnakchalnak.category_service.category.vo.PresignedUrlResponseVo;
+import com.chalnakchalnak.category_service.category.vo.out.PresignedUrlResponseVo;
 import lombok.Builder;
 import lombok.Getter;
 
