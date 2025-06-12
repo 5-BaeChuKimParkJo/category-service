@@ -1,4 +1,4 @@
-package com.chalnakchalnak.category_service.category.vo;
+package com.chalnakchalnak.category_service.category.vo.in;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
