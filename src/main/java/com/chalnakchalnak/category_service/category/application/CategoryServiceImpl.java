@@ -11,6 +11,7 @@ import com.chalnakchalnak.category_service.common.exception.BaseException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class CategoryServiceImpl implements CategoryService{
     private final CategoryRepositoryCustom categoryRepositoryCustom;
 
     @Override
+    @Cacheable(value = "category", key = "#categoryId")
     public CategoryResponseDto getCategory(Long categoryId) {
         return CategoryResponseDto.from(categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_CATEGORY)));
     }
 
     @Override
+    @Cacheable(value = "category", key = "#categoryIdListRequestDto.categoryIdList")
     public List<CategoryResponseDto> getCategoryList(CategoryIdListRequestDto categoryIdListRequestDto) {
         return categoryIdListRequestDto.getCategoryIdList()
                 .stream().map(categoryId -> CategoryResponseDto.from(categoryRepository.findById(categoryId)
@@ -38,6 +41,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    @Cacheable(value = "category")
     public List<CategoryResponseDto> getCategoryList() {
         return categoryRepository.findAll().stream().map(CategoryResponseDto::from).toList();
     }

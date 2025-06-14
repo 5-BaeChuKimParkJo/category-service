@@ -65,10 +65,4 @@ public class CategoryController {
     public void deleteCategory(@PathVariable Long categoryId) {
         categoryService.deleteCategory(categoryId);
     }
-
-    @Operation(summary = "추천 카테고리 조회")
-    @GetMapping("/recommend")
-    public List<CategoryVo> getRecommendedCategory() {
-        return null;
-    }
 }
