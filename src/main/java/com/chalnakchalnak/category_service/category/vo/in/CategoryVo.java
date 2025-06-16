@@ -11,13 +11,13 @@ public class CategoryVo {
     private Long categoryId;
     private String name;
     private String description;
-    private String imageUrl;
+    private String imageKey;
 
     @Builder
-    public CategoryVo(Long categoryId, String name, String description, String imageUrl) {
+    public CategoryVo(Long categoryId, String name, String description, String imageKey) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.imageKey = imageKey;
     }
 }

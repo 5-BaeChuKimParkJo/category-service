@@ -35,8 +35,8 @@ public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
             update.set(c.description, dto.getDescription());
             hasUpdate = true;
         }
-        if (dto.getImageUrl() != null && !dto.getImageUrl().isBlank()) {
-            update.set(c.imageUrl, dto.getImageUrl());
+        if (dto.getImageKey() != null && !dto.getImageKey().isBlank()) {
+            update.set(c.imageKey, dto.getImageKey());
             hasUpdate = true;
         }
 

@@ -15,14 +15,14 @@ public class CategoryRequestDto {
     private Long categoryId;
     private String name;
     private String description;
-    private String imageUrl;
+    private String imageKey;
 
     @Builder
-    public CategoryRequestDto(Long categoryId, String name, String description, String imageUrl) {
+    public CategoryRequestDto(Long categoryId, String name, String description, String imageKey) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.imageKey = imageKey;
     }
 
     public static CategoryRequestDto from(CategoryVo categoryVo) {
@@ -30,7 +30,7 @@ public class CategoryRequestDto {
                 .categoryId(categoryVo.getCategoryId())
                 .name(categoryVo.getName())
                 .description(categoryVo.getDescription())
-                .imageUrl(categoryVo.getImageUrl())
+                .imageKey(categoryVo.getImageKey())
                 .build();
     }
 
@@ -39,7 +39,7 @@ public class CategoryRequestDto {
                 .id(this.categoryId)
                 .name(this.name)
                 .description(this.description)
-                .imageUrl(this.imageUrl)
+                .imageKey(this.imageKey)
                 .build();
     }
 }

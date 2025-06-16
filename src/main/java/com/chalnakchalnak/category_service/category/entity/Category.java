@@ -21,17 +21,17 @@ public class Category extends BaseEntity {
 
     private String description;
 
-    private String imageUrl;
+    private String imageKey;
 
     @Builder
-    public Category(Long id, String name, String description, String imageUrl) {
+    public Category(Long id, String name, String description, String imageKey) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.imageKey = imageKey;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageKey(String imageKey) {
+        this.imageKey = imageKey;
     }
 }
