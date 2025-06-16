@@ -15,15 +15,15 @@ public class CategoryResponseDto {
     private Long categoryId;
     private String name;
     private String description;
-    private String imageUrl;
+    private String imageKey;
     private Boolean isUsed;
 
     @Builder
-    public CategoryResponseDto(Long categoryId, String name, String description, String imageUrl, Boolean isUsed) {
+    public CategoryResponseDto(Long categoryId, String name, String description, String imageKey, Boolean isUsed) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.imageKey = imageKey;
         this.isUsed = isUsed;
     }
 
@@ -32,7 +32,7 @@ public class CategoryResponseDto {
                 .categoryId(category.getId())
                 .name(category.getName())
                 .description(category.getDescription())
-                .imageUrl(category.getImageUrl())
+                .imageKey(category.getImageKey())
                 .build();
     }
 
@@ -41,7 +41,7 @@ public class CategoryResponseDto {
                 .categoryId(categoryId)
                 .name(name)
                 .description(description)
-                .imageUrl(imageUrl)
+                .imageKey(imageKey)
                 .build();
     }
 }

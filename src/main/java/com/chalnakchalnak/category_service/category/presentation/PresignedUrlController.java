@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Tag(name = "ProductImage", description = "상품 이미지 관련 API")
+@Tag(name = "CategoryImage", description = "카테고리 이미지 관련 API")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/category")

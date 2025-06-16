@@ -3,15 +3,17 @@ package com.chalnakchalnak.category_service.category.vo.out;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Map;
+
 @Getter
 public class PresignedUrlResponseVo {
 
-    private String presignedUrl;
-    private String uploadFileUrl;
+    private String url;
+    private Map<String, String> fields;
 
     @Builder
-    public PresignedUrlResponseVo(String presignedUrl, String uploadFileUrl) {
-        this.presignedUrl = presignedUrl;
-        this.uploadFileUrl = uploadFileUrl;
+    public PresignedUrlResponseVo(String url, Map<String, String> fields) {
+        this.url = url;
+        this.fields = fields;
     }
 }

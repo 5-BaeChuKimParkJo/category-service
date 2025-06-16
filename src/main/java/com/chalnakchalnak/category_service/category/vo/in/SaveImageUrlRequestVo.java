@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class SaveImageUrlRequestVo {
 
-    private String uploadFileUrl;
+    private String imageKey;
     private Long categoryId;
 }

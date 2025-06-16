@@ -7,19 +7,19 @@ import lombok.Getter;
 @Getter
 public class SaveImageUrlRequestDto {
 
-    private String uploadFileUrl;
+    private String profileImageKey;
     private Long categoryId;
 
     @Builder
-    public SaveImageUrlRequestDto(String uploadFileUrl,
+    public SaveImageUrlRequestDto(String profileImageKey,
                                   Long categoryId) {
-        this.uploadFileUrl = uploadFileUrl;
+        this.profileImageKey = profileImageKey;
         this.categoryId = categoryId;
     }
 
     public static SaveImageUrlRequestDto from(SaveImageUrlRequestVo saveImageUrlRequestVo) {
         return SaveImageUrlRequestDto.builder()
-                .uploadFileUrl(saveImageUrlRequestVo.getUploadFileUrl())
+                .profileImageKey(saveImageUrlRequestVo.getImageKey())
                 .categoryId(saveImageUrlRequestVo.getCategoryId())
                 .build();
     }

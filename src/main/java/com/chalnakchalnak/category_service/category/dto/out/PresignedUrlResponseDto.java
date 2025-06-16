@@ -4,22 +4,24 @@ import com.chalnakchalnak.category_service.category.vo.out.PresignedUrlResponseV
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Map;
+
 @Getter
 public class PresignedUrlResponseDto {
 
-    private String presignedUrl;
-    private String uploadFileUrl;
+    private String url;
+    private Map<String, String> fields;
 
     @Builder
-    public PresignedUrlResponseDto(String presignedUrl, String uploadFileUrl) {
-        this.presignedUrl = presignedUrl;
-        this.uploadFileUrl = uploadFileUrl;
+    public PresignedUrlResponseDto(String url, Map<String, String> fields) {
+        this.url = url;
+        this.fields = fields;
     }
 
     public PresignedUrlResponseVo toVo() {
         return PresignedUrlResponseVo.builder()
-                .presignedUrl(presignedUrl)
-                .uploadFileUrl(uploadFileUrl)
+                .url(url)
+                .fields(fields)
                 .build();
     }
 }
