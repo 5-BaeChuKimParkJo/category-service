@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +24,18 @@ import java.util.List;
 @RestController
 public class CategoryController {
 
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+
+    @Value("${cloud.aws.region.static}")
+    private String region;
+
     private final CategoryService categoryService;
 
     @Operation(summary = "카테고리 단일 조회")
     @GetMapping("/{categoryId}")
     public CategoryResponseVo getCategory(@PathVariable Long categoryId) {
-        return categoryService.getCategory(categoryId).toVo();
+        return categoryService.getCategory(categoryId).toVo(bucket, region);
     }
 
     @Operation(summary = "카테고리 리스트 조회")
@@ -36,7 +43,7 @@ public class CategoryController {
     public List<CategoryResponseVo> getCategoryLIst(@RequestBody @Valid CategoryIdListRequestVo categoryIdListRequestVo) {
         return categoryService.getCategoryList(CategoryIdListRequestDto.from(categoryIdListRequestVo))
                 .stream()
-                .map(categoryResponseDto -> categoryResponseDto.toVo())
+                .map(categoryResponseDto -> categoryResponseDto.toVo(bucket, region))
                 .toList();
     }
 
@@ -45,7 +52,7 @@ public class CategoryController {
     public List<CategoryResponseVo> getCategoryList() {
         return categoryService.getCategoryList()
                         .stream()
-                        .map(CategoryResponseDto::toVo)
+                        .map(categoryResponseDto -> categoryResponseDto.toVo(region, bucket))
                         .toList();
     }
 
@@ -65,11 +72,5 @@ public class CategoryController {
     @DeleteMapping("/{categoryId}")
     public void deleteCategory(@PathVariable Long categoryId) {
         categoryService.deleteCategory(categoryId);
-    }
-
-    @Operation(summary = "추천 카테고리 조회")
-    @GetMapping("/recommend")
-    public List<CategoryResponseVo> getRecommendedCategory() {
-        return null;
     }
 }

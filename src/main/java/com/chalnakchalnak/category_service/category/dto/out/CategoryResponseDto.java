@@ -13,12 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 @NoArgsConstructor
 public class CategoryResponseDto {
 
-    @Value("${cloud.aws.region.static}")
-    private String region;
-
-    @Value("${cloud.aws.s3.bucket}")
-    private String bucket;
-
     private Long categoryId;
     private String name;
     private String description;
@@ -45,7 +39,7 @@ public class CategoryResponseDto {
                 .build();
     }
 
-    public CategoryResponseVo toVo() {
+    public CategoryResponseVo toVo(String bucket, String region) {
         return CategoryResponseVo.builder()
                 .categoryId(categoryId)
                 .name(name)
