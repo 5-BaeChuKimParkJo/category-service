@@ -5,7 +5,8 @@ import com.chalnakchalnak.category_service.category.dto.in.CategoryIdListRequest
 import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
 import com.chalnakchalnak.category_service.category.dto.out.CategoryResponseDto;
 import com.chalnakchalnak.category_service.category.vo.in.CategoryIdListRequestVo;
-import com.chalnakchalnak.category_service.category.vo.in.CategoryVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryRequestVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryResponseVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -26,13 +27,13 @@ public class CategoryController {
 
     @Operation(summary = "카테고리 단일 조회")
     @GetMapping("/{categoryId}")
-    public CategoryVo getCategory(@PathVariable Long categoryId) {
+    public CategoryResponseVo getCategory(@PathVariable Long categoryId) {
         return categoryService.getCategory(categoryId).toVo();
     }
 
     @Operation(summary = "카테고리 리스트 조회")
     @PostMapping("/list")
-    public List<CategoryVo> getCategoryLIst(@RequestBody @Valid CategoryIdListRequestVo categoryIdListRequestVo) {
+    public List<CategoryResponseVo> getCategoryLIst(@RequestBody @Valid CategoryIdListRequestVo categoryIdListRequestVo) {
         return categoryService.getCategoryList(CategoryIdListRequestDto.from(categoryIdListRequestVo))
                 .stream()
                 .map(categoryResponseDto -> categoryResponseDto.toVo())
@@ -41,7 +42,7 @@ public class CategoryController {
 
     @Operation(summary = "카테고리 전체 조회")
     @GetMapping("/list")
-    public List<CategoryVo> getCategoryList() {
+    public List<CategoryResponseVo> getCategoryList() {
         return categoryService.getCategoryList()
                         .stream()
                         .map(CategoryResponseDto::toVo)
@@ -50,14 +51,14 @@ public class CategoryController {
 
     @Operation(summary = "카테고리 생성")
     @PostMapping
-    public void createCategory(@RequestBody CategoryVo categoryVo) {
-        categoryService.createCategory(CategoryRequestDto.from(categoryVo));
+    public void createCategory(@RequestBody CategoryRequestVo categoryRequestVo) {
+        categoryService.createCategory(CategoryRequestDto.from(categoryRequestVo));
     }
 
     @Operation(summary = "카테고리 수정")
     @PutMapping
-    public void updateCategory(@RequestBody CategoryVo categoryVo) {
-        categoryService.updateCategory(CategoryRequestDto.from(categoryVo));
+    public void updateCategory(@RequestBody CategoryRequestVo categoryRequestVo) {
+        categoryService.updateCategory(CategoryRequestDto.from(categoryRequestVo));
     }
 
     @Operation(summary = "카테고리 삭제")
@@ -68,7 +69,7 @@ public class CategoryController {
 
     @Operation(summary = "추천 카테고리 조회")
     @GetMapping("/recommend")
-    public List<CategoryVo> getRecommendedCategory() {
+    public List<CategoryResponseVo> getRecommendedCategory() {
         return null;
     }
 }

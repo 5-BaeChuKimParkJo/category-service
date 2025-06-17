@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class CategoryVo {
+public class CategoryResponseVo {
 
     private Long categoryId;
     private String name;
@@ -14,7 +14,7 @@ public class CategoryVo {
     private String imageUrl;
 
     @Builder
-    public CategoryVo(Long categoryId, String name, String description, String imageUrl) {
+    public CategoryResponseVo(Long categoryId, String name, String description, String imageUrl) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
