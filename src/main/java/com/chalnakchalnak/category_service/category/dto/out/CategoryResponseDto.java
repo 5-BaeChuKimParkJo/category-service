@@ -1,7 +1,7 @@
 package com.chalnakchalnak.category_service.category.dto.out;
 
 import com.chalnakchalnak.category_service.category.entity.Category;
-import com.chalnakchalnak.category_service.category.vo.in.CategoryVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryResponseVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,12 +45,12 @@ public class CategoryResponseDto {
                 .build();
     }
 
-    public CategoryVo toVo() {
-        return CategoryVo.builder()
+    public CategoryResponseVo toVo() {
+        return CategoryResponseVo.builder()
                 .categoryId(categoryId)
                 .name(name)
                 .description(description)
-                .imageUrl("https://" + bucket + ".s3." + region + ".amazonaws.com/" + imageKey)
+                .imageUrl(imageKey != null ? "https://" + bucket + ".s3." + region + ".amazonaws.com/" + imageKey : "")
                 .build();
     }
 }
