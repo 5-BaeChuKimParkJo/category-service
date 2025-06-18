@@ -40,11 +40,14 @@ public class CategoryResponseDto {
     }
 
     public CategoryResponseVo toVo(String bucket, String region) {
+        String imageUrl = !"".equals(imageKey) && imageKey != null ? "https://" + bucket + ".s3."
+                + region + ".amazonaws.com/" + imageKey : null;
+
         return CategoryResponseVo.builder()
                 .categoryId(categoryId)
                 .name(name)
                 .description(description)
-                .imageUrl(imageKey != null ? "https://" + bucket + ".s3." + region + ".amazonaws.com/" + imageKey : "")
+                .imageUrl(imageUrl)
                 .build();
     }
 }
