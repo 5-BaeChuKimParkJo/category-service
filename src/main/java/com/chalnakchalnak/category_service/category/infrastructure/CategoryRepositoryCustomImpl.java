@@ -1,6 +1,6 @@
 package com.chalnakchalnak.category_service.category.infrastructure;
 
-import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
+import com.chalnakchalnak.category_service.category.dto.in.CategoryUpdateRequestDto;
 import com.chalnakchalnak.category_service.category.entity.QCategory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.transaction.Transactional;
@@ -18,7 +18,7 @@ public class CategoryRepositoryCustomImpl implements CategoryRepositoryCustom{
 
     @Transactional
     @Override
-    public long updateCategoryDynamic(CategoryRequestDto dto) {
+    public long updateCategoryDynamic(CategoryUpdateRequestDto dto) {
         QCategory c = QCategory.category;
 
         log.info("QCategory: {}", c);
