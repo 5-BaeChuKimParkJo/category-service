@@ -1,8 +1,7 @@
 package com.chalnakchalnak.category_service.category.dto.in;
 
 import com.chalnakchalnak.category_service.category.entity.Category;
-import com.chalnakchalnak.category_service.category.vo.in.CategoryRequestVo;
-import com.chalnakchalnak.category_service.category.vo.in.CategoryResponseVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryUpdateRequestVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString
-public class CategoryRequestDto {
+public class CategoryUpdateRequestDto {
 
     private Long categoryId;
     private String name;
@@ -20,7 +19,7 @@ public class CategoryRequestDto {
     private String imageKey;
 
     @Builder
-    public CategoryRequestDto(Long categoryId, String name, String description, String imageUrl, String imageKey) {
+    public CategoryUpdateRequestDto(Long categoryId, String name, String description, String imageUrl, String imageKey) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
@@ -28,12 +27,12 @@ public class CategoryRequestDto {
         this.imageKey = imageKey;
     }
 
-    public static CategoryRequestDto from(CategoryRequestVo categoryRequestVo) {
-        return CategoryRequestDto.builder()
-                .categoryId(categoryRequestVo.getCategoryId())
-                .name(categoryRequestVo.getName())
-                .description(categoryRequestVo.getDescription())
-                .imageUrl(categoryRequestVo.getImageUrl())
+    public static CategoryUpdateRequestDto from(CategoryUpdateRequestVo categoryUpdateRequestVo) {
+        return CategoryUpdateRequestDto.builder()
+                .categoryId(categoryUpdateRequestVo.getCategoryId())
+                .name(categoryUpdateRequestVo.getName())
+                .description(categoryUpdateRequestVo.getDescription())
+                .imageUrl(categoryUpdateRequestVo.getImageUrl())
                 .build();
     }
 

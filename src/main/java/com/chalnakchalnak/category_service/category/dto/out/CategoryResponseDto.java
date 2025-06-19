@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.Serializable;
+
 @Getter
 @ToString
 @NoArgsConstructor
-public class CategoryResponseDto {
+public class CategoryResponseDto implements Serializable {
 
     private Long categoryId;
     private String name;

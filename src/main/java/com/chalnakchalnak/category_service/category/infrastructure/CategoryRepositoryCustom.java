@@ -1,7 +1,7 @@
 package com.chalnakchalnak.category_service.category.infrastructure;
 
-import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
+import com.chalnakchalnak.category_service.category.dto.in.CategoryUpdateRequestDto;
 
 public interface CategoryRepositoryCustom {
-    long updateCategoryDynamic(CategoryRequestDto categoryUpdateRequestDto);
+    long updateCategoryDynamic(CategoryUpdateRequestDto categoryUpdateRequestDto);
 }

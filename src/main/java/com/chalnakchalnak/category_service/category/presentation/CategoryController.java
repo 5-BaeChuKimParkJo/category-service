@@ -1,11 +1,12 @@
 package com.chalnakchalnak.category_service.category.presentation;
 
 import com.chalnakchalnak.category_service.category.application.CategoryService;
+import com.chalnakchalnak.category_service.category.dto.in.CategoryCreateRequestDto;
 import com.chalnakchalnak.category_service.category.dto.in.CategoryIdListRequestDto;
-import com.chalnakchalnak.category_service.category.dto.in.CategoryRequestDto;
-import com.chalnakchalnak.category_service.category.dto.out.CategoryResponseDto;
+import com.chalnakchalnak.category_service.category.dto.in.CategoryUpdateRequestDto;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryCreateRequestVo;
 import com.chalnakchalnak.category_service.category.vo.in.CategoryIdListRequestVo;
-import com.chalnakchalnak.category_service.category.vo.in.CategoryRequestVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryUpdateRequestVo;
 import com.chalnakchalnak.category_service.category.vo.in.CategoryResponseVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -58,14 +59,14 @@ public class CategoryController {
 
     @Operation(summary = "카테고리 생성")
     @PostMapping
-    public void createCategory(@RequestBody CategoryRequestVo categoryRequestVo) {
-        categoryService.createCategory(CategoryRequestDto.from(categoryRequestVo));
+    public void createCategory(@RequestBody CategoryCreateRequestVo categoryCreateRequestVo) {
+        categoryService.createCategory(CategoryCreateRequestDto.from(categoryCreateRequestVo));
     }
 
     @Operation(summary = "카테고리 수정")
     @PutMapping
-    public void updateCategory(@RequestBody CategoryRequestVo categoryRequestVo) {
-        categoryService.updateCategory(CategoryRequestDto.from(categoryRequestVo));
+    public void updateCategory(@RequestBody CategoryUpdateRequestVo categoryRequestVo) {
+        categoryService.updateCategory(CategoryUpdateRequestDto.from(categoryRequestVo));
     }
 
     @Operation(summary = "카테고리 삭제")
