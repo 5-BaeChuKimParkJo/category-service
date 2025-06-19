@@ -1,7 +1,8 @@
 package com.chalnakchalnak.category_service.category.dto.in;
 
 import com.chalnakchalnak.category_service.category.entity.Category;
-import com.chalnakchalnak.category_service.category.vo.in.CategoryVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryRequestVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryResponseVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,21 +17,23 @@ public class CategoryRequestDto {
     private String name;
     private String description;
     private String imageUrl;
+    private String imageKey;
 
     @Builder
-    public CategoryRequestDto(Long categoryId, String name, String description, String imageUrl) {
+    public CategoryRequestDto(Long categoryId, String name, String description, String imageUrl, String imageKey) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.imageKey = imageKey;
     }
 
-    public static CategoryRequestDto from(CategoryVo categoryVo) {
+    public static CategoryRequestDto from(CategoryRequestVo categoryRequestVo) {
         return CategoryRequestDto.builder()
-                .categoryId(categoryVo.getCategoryId())
-                .name(categoryVo.getName())
-                .description(categoryVo.getDescription())
-                .imageUrl(categoryVo.getImageUrl())
+                .categoryId(categoryRequestVo.getCategoryId())
+                .name(categoryRequestVo.getName())
+                .description(categoryRequestVo.getDescription())
+                .imageUrl(categoryRequestVo.getImageUrl())
                 .build();
     }
 
@@ -39,7 +42,7 @@ public class CategoryRequestDto {
                 .id(this.categoryId)
                 .name(this.name)
                 .description(this.description)
-                .imageUrl(this.imageUrl)
+                .imageKey(this.imageKey)
                 .build();
     }
 }

@@ -1,11 +1,12 @@
 package com.chalnakchalnak.category_service.category.dto.out;
 
 import com.chalnakchalnak.category_service.category.entity.Category;
-import com.chalnakchalnak.category_service.category.vo.in.CategoryVo;
+import com.chalnakchalnak.category_service.category.vo.in.CategoryResponseVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 
@@ -17,14 +18,16 @@ public class CategoryResponseDto implements Serializable {
     private Long categoryId;
     private String name;
     private String description;
+    private String imageKey;
     private String imageUrl;
     private Boolean isUsed;
 
     @Builder
-    public CategoryResponseDto(Long categoryId, String name, String description, String imageUrl, Boolean isUsed) {
+    public CategoryResponseDto(Long categoryId, String name, String description, String imageKey, String imageUrl, Boolean isUsed) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
+        this.imageKey = imageKey;
         this.imageUrl = imageUrl;
         this.isUsed = isUsed;
     }
@@ -34,12 +37,15 @@ public class CategoryResponseDto implements Serializable {
                 .categoryId(category.getId())
                 .name(category.getName())
                 .description(category.getDescription())
-                .imageUrl(category.getImageUrl())
+                .imageKey(category.getImageKey())
                 .build();
     }
 
-    public CategoryVo toVo() {
-        return CategoryVo.builder()
+    public CategoryResponseVo toVo(String bucket, String region) {
+        String imageUrl = !"".equals(imageKey) && imageKey != null ? "https://" + bucket + ".s3."
+                + region + ".amazonaws.com/" + imageKey : null;
+
+        return CategoryResponseVo.builder()
                 .categoryId(categoryId)
                 .name(name)
                 .description(description)

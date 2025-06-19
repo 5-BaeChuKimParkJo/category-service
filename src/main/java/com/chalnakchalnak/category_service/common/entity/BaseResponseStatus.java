@@ -28,6 +28,8 @@ public enum BaseResponseStatus {
     // Category
     NO_EXIST_CATEGORY(HttpStatus.NOT_FOUND, 2000,"존재하지 않는 카테고리입니다"),
     DUPLICATED_CATEGORY(HttpStatus.CONFLICT, 2001, "이미 등록된 카테고리입니다"),
+
+    UNABLE_TO_CALCULATE_HMAC(HttpStatus.INTERNAL_SERVER_ERROR, 2003, "HMAC을 계산할 수 없습니다"),
     ;
 
     private final HttpStatusCode httpStatusCode;
