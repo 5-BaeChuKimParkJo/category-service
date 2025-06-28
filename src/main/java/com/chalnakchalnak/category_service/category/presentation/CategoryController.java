@@ -53,7 +53,7 @@ public class CategoryController {
     public List<CategoryResponseVo> getCategoryList() {
         return categoryService.getCategoryList()
                         .stream()
-                        .map(categoryResponseDto -> categoryResponseDto.toVo(region, bucket))
+                        .map(categoryResponseDto -> categoryResponseDto.toVo(bucket, region))
                         .toList();
     }
 

@@ -10,14 +10,12 @@ public class CategoryCreateRequestDto {
 
     private String name;
     private String description;
-    private String imageUrl;
     private String imageKey;
 
     @Builder
-    public CategoryCreateRequestDto(String name, String description, String imageUrl, String imageKey) {
+    public CategoryCreateRequestDto(String name, String description, String imageKey) {
                 this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
         this.imageKey = imageKey;
     }
 
@@ -25,7 +23,7 @@ public class CategoryCreateRequestDto {
         return CategoryCreateRequestDto.builder()
                 .name(categoryCreateRequestVo.getName())
                 .description(categoryCreateRequestVo.getDescription())
-                .imageUrl(categoryCreateRequestVo.getImageUrl())
+                .imageKey(categoryCreateRequestVo.getImageKey())
                 .build();
     }
 
