@@ -7,5 +7,5 @@ public class CategoryCreateRequestVo {
 
     private String name;
     private String description;
-    private String imageUrl;
+    private String imageKey;
 }
